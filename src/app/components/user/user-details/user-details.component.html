@@ -1,0 +1,23 @@
+<p>
+  user-details works!
+</p>
+<form [formGroup]="userForm">
+    <div class="input-group">
+        <input class="form-control" type="text" formControlName="firstName" />
+    </div>
+    <div class="input-group">
+        <input class="form-control" type="text" formControlName="lastName" />
+    </div>
+    <div class="input-group">
+        <input class="form-control" type="text" formControlName="age" />
+    </div>
+    <div class="input-group">
+        <input class="form-control" type="textarea" formControlName="description" />
+    </div>
+
+    <div class="input-group">
+        <button type="button" class="btn btn-primary" title="Save editions" (click)="deleteCheckedItems()">Save</button>
+        <button type="button" class="btn btn-secondary" title="Cancel and go back to list" data-toggle="modal" data-target="#exampleModal">Cancel</button>
+    </div>
+    <app-modal [titulo]="tituloModal" [body]="bodyModal" (confirmEvent)="returnToList()"></app-modal>
+</form>

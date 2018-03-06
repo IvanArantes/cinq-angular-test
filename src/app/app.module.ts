@@ -16,13 +16,13 @@ import { AppRoutingModule } from './app-routing.module';
     AppComponent
   ],
   imports: [
+    UserModule,
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
     FormsModule, 
     ReactiveFormsModule,
     RouterModule,
-    UserModule,
     NgbModule.forRoot()
   ],
   providers: [],

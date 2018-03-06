@@ -4,4 +4,5 @@ export class User {
     public lastName: String;
     public age: number;
     public description: String;
+    public checked: boolean;
 }
