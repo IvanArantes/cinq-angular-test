@@ -1,6 +1,4 @@
-<p>
-  user-details works!
-</p>
+<div class="row">
 <form [formGroup]="userForm">
     <div class="input-group">
         <input class="form-control" type="text" formControlName="firstName" />
@@ -17,7 +15,8 @@
 
     <div class="input-group">
         <button type="button" class="btn btn-primary" title="Save editions" (click)="deleteCheckedItems()">Save</button>
-        <button type="button" class="btn btn-secondary" title="Cancel and go back to list" data-toggle="modal" data-target="#exampleModal">Cancel</button>
+        <button type="button" class="btn btn-secondary" title="Cancel and go back to list" data-target="#exampleModal" (click)="modalHandler()">Cancel</button>
     </div>
-    <app-modal [titulo]="tituloModal" [body]="bodyModal" (confirmEvent)="returnToList()"></app-modal>
+    <app-modal [openModal]="openModal" [titulo]="tituloModal" [body]="bodyModal" (confirmEvent)="returnToList()" (deniedEvent)="closeModal()"></app-modal>
 </form>
+</div>

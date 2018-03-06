@@ -8,7 +8,9 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class ModalComponent implements OnInit {
   @Input() titulo: String;
   @Input() body: String;
+  @Input() openModal: boolean;
   @Output() confirmEvent = new EventEmitter<boolean>();
+  @Output() deniedEvent = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -17,6 +19,10 @@ export class ModalComponent implements OnInit {
 
   confirm() {
     this.confirmEvent.emit(true);
+  }
+
+  deny() {
+    this.deniedEvent.emit(false);
   }
 
 }

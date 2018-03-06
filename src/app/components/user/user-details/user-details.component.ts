@@ -20,6 +20,8 @@ export class UserDetailsComponent implements OnInit {
   private tituloModal: String = "Are you sure you want to cancel?";
   private bodyModal: String = "The changes made will be discarded";
 
+  private openModal = false;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -62,8 +64,19 @@ export class UserDetailsComponent implements OnInit {
     });
   }
 
+  public modalHandler(){
+    if(this.userForm.touched) {
+      this.openModal = true;
+    } else {
+      this.returnToList();
+    }
+  }
 
   public returnToList() {
     this.router.navigate(['/users']);
+  }
+
+  public closeModal() {
+    this.openModal = false;
   }
 }
