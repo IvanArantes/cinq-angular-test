@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListUsersComponent } from './list-users/list-users.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { UserHostComponent } from './user-host/user-host.component';
 
 const userRoutes: Routes = [
   {
@@ -10,7 +10,7 @@ const userRoutes: Routes = [
   },
   {
     path: 'users',
-    component: ListUsersComponent
+    component: UserHostComponent
   }
 ];
 

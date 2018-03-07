@@ -1,27 +1,3 @@
-<div class="top-items">
-<div class="row">
-  <div class="col-md-3">
-    <div class="input-group">
-      <input class="form-control" [(ngModel)]="searchFilter" type="text" placeholder="Search for an user name" />
-    </div>
-  </div>
-
-  <div class="col-md-3">
-    <div class="input-group">
-      <button type="button" class="btn btn-danger" title="Delete selected items" (click)="deleteCheckedItems()" [disabled]="nrSelectedItems == 0">Delete</button>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="input-group">
-      <a class="btn btn-success" title="Download JSON" [href]="downloadJsonHref" download="download.json" >Download JSON</a>
-      <a class="btn btn-success" title="Download CSV" [href]="downloadJsonHref" download="download.json">Download CSV</a>
-    </div>
-  </div>
-</div>
-
-<!-- items below the inputs -->
-</div>
 <div class="row">
   <table class="table table-hover">
     <thead class="thead-default">

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ListUsersComponent } from './list-users/list-users.component';
 import { UserService } from '../../services/user/user.service';
 import { UserRoutingModule } from './user-routing.module';
 import { FilterPipe } from '../../pipes/filter/filter.pipe';
@@ -8,6 +7,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { ModalComponent } from '../layout/modal/modal.component';
 import { SharedModule } from '../../shared/shared/shared.module';
+import { UserTableComponent } from './user-table/user-table.component';
+import { UserHostComponent } from './user-host/user-host.component';
+import { UserCardComponent } from './user-card/user-card.component';
 
 @NgModule({
   imports: [
@@ -15,7 +17,7 @@ import { SharedModule } from '../../shared/shared/shared.module';
     UserRoutingModule,
     SharedModule
   ],
-  declarations: [ListUsersComponent, FilterPipe, UserDetailsComponent, ModalComponent],
+  declarations: [FilterPipe, UserDetailsComponent, ModalComponent, UserTableComponent, UserHostComponent, UserCardComponent],
   providers: [
     UserService
   ]

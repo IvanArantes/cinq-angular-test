@@ -1,0 +1,31 @@
+<div class="top-items">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="input-group">
+        <input class="form-control" [(ngModel)]="searchFilter" type="text" placeholder="Search for an user name" />
+      </div>
+    </div>
+  
+    <div class="col-md-3">
+      <div class="input-group">
+        <button type="button" class="btn btn-danger" title="Delete selected items" (click)="deleteCheckedItems()" [disabled]="nrSelectedItems == 0">Delete</button>
+      </div>
+    </div>
+  
+    <div class="col-md-6">
+      <div class="input-group">
+        <a class="btn btn-success" title="Download JSON" [href]="downloadJsonHref" download="users.json" >Download JSON</a>
+        <a class="btn btn-success" title="Download CSV" (click)="generateDownloadCSV()">Download CSV</a>
+      </div>
+    </div>
+  </div>
+
+  <ng-template appUsersHost></ng-template>
+  <app-user-table [users]="users" [searchFilter]="searchFilter" 
+  (changedNrUsers)="getNumberOfSelectedUsers()"
+  (detectedChanges)="getUpdatedUsers()">
+</app-user-table>
+
+<app-user-card [users]="users" [searchFilter]="searchFilter" 
+(changedNrUsers)="getNumberOfSelectedUsers()"
+(detectedChanges)="getUpdatedUsers()"></app-user-card>
