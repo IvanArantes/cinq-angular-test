@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import { UserService } from '../../../services/user/user-service.service';
+import { UserService } from '../../../services/user/user.service';
 import { User } from '../../../domains/user';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -37,11 +37,11 @@ export class UserDetailsComponent implements OnInit {
   getSelectedUser() {
     this.route.paramMap
     .switchMap((params : ParamMap) =>
-    this.service.getUser(params.get('id')))
-    .subscribe(res => {
+    this.service.getUser(params.get('id'))).subscribe(res => {
       this.user = res as User;
       this.fillForm();
-    });
+    }
+  );
   }
 
   createForm() {

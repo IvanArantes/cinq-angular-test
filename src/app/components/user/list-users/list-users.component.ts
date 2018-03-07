@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../../../services/user/user-service.service';
+import { UserService } from '../../../services/user/user.service';
 import { User } from '../../../domains/user';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
@@ -13,8 +13,7 @@ export class ListUsersComponent implements OnInit {
   private searchFilter: String;
   private nrSelectedItems: number;
 
-  constructor(private userService: UserService,
-    private sanitizer: DomSanitizer) { 
+  constructor(private userService: UserService) { 
     this.nrSelectedItems = 0;
   }
 
@@ -39,9 +38,13 @@ export class ListUsersComponent implements OnInit {
   }
 
   public generateDownloadJsonUri() { 
-   var uri = this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(JSON.stringify(this.users)));
-   this.downloadJsonHref = uri;
+   this.downloadJsonHref = this.userService.generateDownloadJsonUri(this.users);
 }
 
+  public deleteItem(id: number) {
+    //let user = this.users.filter(user => user.id === id);
+    let index = this.users.findIndex(user => user.id === id);
+    this.users.splice(index, 1);
+  }
 
 }

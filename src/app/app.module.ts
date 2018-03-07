@@ -9,6 +9,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { UserModule } from './components/user/user.module';
 import { AppRoutingModule } from './app-routing.module';
+import { SharedModule } from './shared/shared/shared.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { AppRoutingModule } from './app-routing.module';
     FormsModule, 
     ReactiveFormsModule,
     RouterModule,
+    SharedModule,
     NgbModule.forRoot()
   ],
   providers: [],

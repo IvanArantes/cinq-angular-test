@@ -1,32 +1,52 @@
+<div class="top-items">
 <div class="row">
-<div class="input-group">
-    <input class="form-control" [(ngModel)]="searchFilter" type="text" placeholder="Search for an user name"/>
-</div>
-<div class="input-group">
-    <button type="button" class="btn btn-danger" title="Delete selected items" (click)="deleteCheckedItems()" [disabled]="nrSelectedItems == 0">Delete</button>
-</div>
-<div class="input-group">
-  <a class="btn btn-success" title="Download JSON" [href]="downloadJsonHref" download="download.json">Download JSON</a>
+  <div class="col-md-3">
+    <div class="input-group">
+      <input class="form-control" [(ngModel)]="searchFilter" type="text" placeholder="Search for an user name" />
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="input-group">
+      <button type="button" class="btn btn-danger" title="Delete selected items" (click)="deleteCheckedItems()" [disabled]="nrSelectedItems == 0">Delete</button>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="input-group">
+      <a class="btn btn-success" title="Download JSON" [href]="downloadJsonHref" download="download.json" >Download JSON</a>
+      <a class="btn btn-success" title="Download CSV" [href]="downloadJsonHref" download="download.json">Download CSV</a>
+    </div>
+  </div>
 </div>
 
-<table class="table table-hover">
-  <thead class="thead-inverse">
-    <tr>
-      <th><input type="checkbox"/></th>
-      <th>First Name</th>
-      <th>Last Name</th>
-      <th>Age</th>
-      <th>Delete</th>
-      <th>Details</th>
+<!-- items below the inputs -->
+</div>
+<div class="row">
+  <table class="table table-hover">
+    <thead class="thead-default">
+      <tr>
+        <th>
+          <input type="checkbox" />
+        </th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Age</th>
+        <th class="text-center">Delete</th>
+        <th class="text-center">Details</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let user of users | filter : searchFilter">
+      <td>
+        <input type="checkbox" value="{{user.id}}" [(ngModel)]="user.checked" (change)="numberOfSelectedItems()">
+      </td>
+      <td>{{user.firstName}}</td>
+      <td>{{user.lastName}}</td>
+      <td>{{user.age}}</td>
+      <td class="text-center"><mat-icon (click)="deleteItem(user.id)">delete</mat-icon></td>
+      <td class="text-center">
+        <a [routerLink]="['/users', user.id]"><mat-icon>edit</mat-icon></a>
+      </td>
     </tr>
-  </thead>
-  <tr *ngFor="let user of users | filter : searchFilter">
-    <td><input type="checkbox" value="{{user.id}}" [(ngModel)]="user.checked" (change)="numberOfSelectedItems()"></td>
-    <td>{{user.firstName}}</td>
-    <td>{{user.lastName}}</td>
-    <td>{{user.age}}</td>
-    <td></td>
-    <td><a [routerLink]="['/users', user.id]">Details</a></td>
-  </tr>
-</table>
+  </table>
 </div>
