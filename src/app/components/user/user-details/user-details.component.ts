@@ -25,7 +25,7 @@ export class UserDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private service: UserService,
+    private userService: UserService,
     private fb: FormBuilder) { 
       this.createForm();
     }
@@ -37,7 +37,7 @@ export class UserDetailsComponent implements OnInit {
   getSelectedUser() {
     this.route.paramMap
     .switchMap((params : ParamMap) =>
-    this.service.getUser(params.get('id'))).subscribe(res => {
+    this.userService.getUser(params.get('id'))).subscribe(res => {
       this.user = res as User;
       this.fillForm();
     }
@@ -78,5 +78,9 @@ export class UserDetailsComponent implements OnInit {
 
   public closeModal() {
     this.openModal = false;
+  }
+
+  public saveEditions() {
+    this.userService.saveUser(this.userForm.value);
   }
 }

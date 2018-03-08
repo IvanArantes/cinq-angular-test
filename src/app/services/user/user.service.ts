@@ -8,7 +8,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class UserService {
-  
+  private users: User[];
+
 //HttpClient will be used for HTTP request later.
   constructor(private http: HttpClient, 
     private sanitizer: DomSanitizer) { }
@@ -30,17 +31,23 @@ export class UserService {
     return this.sanitizer.bypassSecurityTrustUrl("data:text/json;charset=UTF-8," + encodeURIComponent(JSON.stringify(object)));
   }
 
-  public deleteCheckedUsers(users: User[]): User[] {
+  public deleteCheckedUsers(users: User[]) {
     for (let item of users.filter(user => user.checked === true)) {
       let index = users.findIndex(x => x.id==item.id);
       users.splice(index, 1);
     }
-  return users;
   }
   
-  public deleteUser(id: number, users: User[]): User[] {
+  public deleteUser(id: number, users: User[]) {
     let index = users.findIndex(user => user.id === id);
     users.splice(index, 1);
-    return users;
+  }
+
+  public saveUser(user: User) {
+    console.log('iasa')
+    this.readJsonFile().subscribe(resp => {this.users = resp as User[]});
+    let index = this.users.findIndex(user => user.id === user.id);
+    // this.users[index] = user;
+
   }
 }

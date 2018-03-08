@@ -11,18 +11,13 @@ export class UserTableComponent implements OnInit {
   @Input() users: User[];
   @Input() searchFilter: String;
   @Output() changedNrUsers = new EventEmitter<boolean>();
-  @Output() detectedChanges = new EventEmitter<boolean>();
   nrSelectedUsers: number;
   
   constructor(private userService: UserService) {
-
     this.nrSelectedUsers = 0;
   }
 
   ngOnInit() {
-    this.userService.readJsonFile()
-    .subscribe(resp => {
-      this.users = resp as User[]});
   }
   
   public numberOfSelectedItems() {
@@ -31,14 +26,12 @@ export class UserTableComponent implements OnInit {
   }
 
   public deleteItem(id: number) {
-    this.users = this.userService.deleteUser(id, this.users);
-    this.detectedChanges.emit(true);
+    this.userService.deleteUser(id, this.users);
   }
 
   public deleteCheckedItems() {
-    this.users = this.userService.deleteCheckedUsers(this.users);
+    this.userService.deleteCheckedUsers(this.users);
     this.nrSelectedUsers = 0;
-    this.detectedChanges.emit(true);
   }
   
 }

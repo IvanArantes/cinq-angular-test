@@ -1,22 +1,31 @@
 <div class="row">
-<form [formGroup]="userForm">
-    <div class="input-group">
-        <input class="form-control" type="text" formControlName="firstName" />
-    </div>
-    <div class="input-group">
-        <input class="form-control" type="text" formControlName="lastName" />
-    </div>
-    <div class="input-group">
-        <input class="form-control" type="text" formControlName="age" />
-    </div>
-    <div class="input-group">
-        <input class="form-control" type="textarea" formControlName="description" />
-    </div>
+    <mat-card>
+        <form [formGroup]="userForm" class="container-form">
+            <mat-card-title>
+                User details
+            </mat-card-title>
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput placeholder="First Name" type="text" formControlName="firstName">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Last Name" type="text" formControlName="lastName">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Age" type="text" formControlName="age">
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput placeholder="Description" type="text" formControlName="description"></textarea>
+                </mat-form-field>
 
-    <div class="input-group">
-        <button type="button" class="btn btn-primary" title="Save editions" (click)="deleteCheckedItems()">Save</button>
-        <button type="button" class="btn btn-secondary" title="Cancel and go back to list" data-target="#exampleModal" (click)="modalHandler()">Cancel</button>
-    </div>
-    <app-modal [openModal]="openModal" [titulo]="tituloModal" [body]="bodyModal" (confirmEvent)="returnToList()" (deniedEvent)="closeModal()"></app-modal>
-</form>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="input-group">
+                    <button type="button" class="btn btn-primary" title="Save editions" (click)="saveEditions()" [disabled]="userForm.invalid">Save</button>
+                    <button type="button" class="btn btn-secondary" title="Cancel and go back to list" data-target="#exampleModal" (click)="modalHandler()">Cancel</button>
+                </div>
+                <app-modal [openModal]="openModal" [titulo]="tituloModal" [body]="bodyModal" (confirmEvent)="returnToList()" (deniedEvent)="closeModal()"></app-modal>
+            </mat-card-actions>
+        </form>
+    </mat-card>
 </div>

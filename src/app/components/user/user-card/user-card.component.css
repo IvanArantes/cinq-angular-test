@@ -1,0 +1,8 @@
+mat-card {
+    margin-right: 1%;
+    margin-bottom: 1%;
+}
+
+mat-card-actions > a > .mat-icon {
+    cursor: pointer;
+}

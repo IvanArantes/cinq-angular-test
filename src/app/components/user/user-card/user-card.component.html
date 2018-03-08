@@ -3,7 +3,8 @@
 <mat-card *ngFor="let user of users | filter : searchFilter" class="col-md-2">
   <mat-card-header>
       <mat-card-title>
-          {{user.firstName}} {{user.lastName}}
+            <input type="checkbox" value="{{user.id}}" [(ngModel)]="user.checked" (change)="numberOfSelectedItems()">
+        {{user.firstName}} {{user.lastName}}
       </mat-card-title>
       <img mat-card-avatar>
   </mat-card-header>
@@ -17,7 +18,7 @@
     
   </mat-card-content>
   <mat-card-actions>
-      <mat-icon (click)="deleteItem(user.id)">delete</mat-icon>
+      <a (click)="deleteItem(user.id)"><mat-icon>delete</mat-icon></a>
       <a [routerLink]="['/users', user.id]"><mat-icon>edit</mat-icon></a>
   </mat-card-actions>
 </mat-card>
