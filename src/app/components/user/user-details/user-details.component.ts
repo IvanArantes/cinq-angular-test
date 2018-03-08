@@ -82,5 +82,6 @@ export class UserDetailsComponent implements OnInit {
 
   public saveEditions() {
     this.userService.saveUser(this.userForm.value);
+    this.returnToList();
   }
 }

@@ -8,7 +8,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Injectable()
 export class UserService {
-  private users: User[];
+  private users: User[] = new Array<User>();
 
 //HttpClient will be used for HTTP request later.
   constructor(private http: HttpClient, 
@@ -24,6 +24,7 @@ export class UserService {
 
   //GET USER BY ID
   public getUser(id: number | string): Observable<any> {
+    //this.http.get('backendUrl', id);
     return this.readJsonFile().map(users => users.find(user => user.id === +id));
   }
 
@@ -38,16 +39,19 @@ export class UserService {
     }
   }
   
+  //Delete User
   public deleteUser(id: number, users: User[]) {
+    //this.http.delete('backendUrl/users', user);
     let index = users.findIndex(user => user.id === id);
     users.splice(index, 1);
   }
 
+  //Save user
   public saveUser(user: User) {
-    console.log('iasa')
+    //this.http.post('backendurl/users', user);
     this.readJsonFile().subscribe(resp => {this.users = resp as User[]});
     let index = this.users.findIndex(user => user.id === user.id);
-    // this.users[index] = user;
+    this.users[index] = user;
 
   }
 }
