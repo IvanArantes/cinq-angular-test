@@ -14,12 +14,15 @@ export class UserService {
   constructor(private http: HttpClient, 
     private sanitizer: DomSanitizer) { }
 
-  //GET USERS
+  //GET USERS. As this is a file not database, i am returning the same edited array.
   public readJsonFile(): Observable<any> {
-    return this.http.get("./assets/users.json")
+    if(this.users.length == 0) {
+      return this.http.get("./assets/users.json")
                     .map(response => response as User[])
                     .catch(err => {throw err});
-
+    } else {
+      return Observable.of(this.users).map(response => response as User[]);
+    }
   }
 
   //GET USER BY ID
@@ -33,8 +36,8 @@ export class UserService {
   }
 
   public deleteCheckedUsers(users: User[]) {
-    for (let item of users.filter(user => user.checked === true)) {
-      let index = users.findIndex(x => x.id==item.id);
+    for (let user of users.filter(user => user.checked === true)) {
+      let index = users.findIndex(user => user.id === user.id);
       users.splice(index, 1);
     }
   }
@@ -47,11 +50,10 @@ export class UserService {
   }
 
   //Save user
-  public saveUser(user: User) {
+  public saveUser(user: User, users: User[]) {
     //this.http.post('backendurl/users', user);
-    this.readJsonFile().subscribe(resp => {this.users = resp as User[]});
-    let index = this.users.findIndex(user => user.id === user.id);
-    this.users[index] = user;
-
+      let index = users.findIndex(user => user.id === user.id);
+      users[index] = user;
+      this.users = users;
   }
 }

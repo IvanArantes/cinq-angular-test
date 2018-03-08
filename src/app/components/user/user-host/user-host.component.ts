@@ -49,16 +49,27 @@ export class UserHostComponent implements OnInit, AfterViewInit {
     if(this.userTableComponent != null) {
       this.nrSelectedItems = this.userTableComponent.nrSelectedUsers;
     }
-    console.log(this.nrSelectedItems);
   }
 
+  //Generate json download uri. If no user is selected, it generates for all users.
   public generateDownloadJsonUri() {
-    this.downloadJsonHref = this.userService.generateDownloadJsonUri(this.users);
+    let selectedUsers = this.users.filter(user => user.checked === true);
+    if (selectedUsers.length == 0) {
+      this.downloadJsonHref = this.userService.generateDownloadJsonUri(this.users);
+    } else {
+      this.downloadJsonHref = this.userService.generateDownloadJsonUri(selectedUsers);
+    }
+    
   }
 
   public generateDownloadCSV() {
     let exporter = new ExportToCSV();
-    exporter.exportAllToCSV(this.users, "users.csv");
+    let selectedUsers = this.users.filter(user => user.checked === true);
+    if (selectedUsers.length == 0) {
+      exporter.exportAllToCSV(this.users, "users.csv");
+    } else {
+      exporter.exportAllToCSV(selectedUsers, "users.csv");
+    }
   }
 
   public deleteCheckedItems() {

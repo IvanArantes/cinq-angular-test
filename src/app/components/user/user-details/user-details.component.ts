@@ -16,6 +16,7 @@ export class UserDetailsComponent implements OnInit {
 //The discard unsaved changes could be done with CanDeactivate, but I prefered to make a modal component for it.
 
   private user: User;
+  private users: User[];
   private userForm: FormGroup;
   private tituloModal: String = "Are you sure you want to cancel?";
   private bodyModal: String = "The changes made will be discarded";
@@ -81,7 +82,11 @@ export class UserDetailsComponent implements OnInit {
   }
 
   public saveEditions() {
-    this.userService.saveUser(this.userForm.value);
-    this.returnToList();
+    let tempUsers: User[];
+    this.userService.readJsonFile().subscribe(resp => {
+      tempUsers = resp as User[];
+      this.userService.saveUser(this.userForm.value, tempUsers);
+      this.returnToList();
+    });
   }
 }

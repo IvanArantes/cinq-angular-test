@@ -8,7 +8,7 @@
  
     <div class="col-md-6 button-group">
       <div class="input-group">
-        <a class="btn btn-success" title="Download JSON" [href]="downloadJsonHref" download="users.json" >Download JSON</a>
+        <a class="btn btn-success" title="Download JSON" (click)="generateDownloadJsonUri()" [href]="downloadJsonHref" download="users.json" >Download JSON</a>
         <a class="btn btn-success" title="Download CSV" (click)="generateDownloadCSV()">Download CSV</a>
         <a><button class="btn btn-danger" title="Delete selected items" (click)="deleteCheckedItems()" [disabled]="nrSelectedItems === 0">Delete</button></a>
       </div>
