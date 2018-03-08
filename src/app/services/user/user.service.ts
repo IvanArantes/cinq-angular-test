@@ -52,6 +52,7 @@ export class UserService {
   //Save user
   public saveUser(user: User, users: User[]) {
     //this.http.post('backendurl/users', user);
+    console.log('aaaa', users);
       let index = users.findIndex(user => user.id === user.id);
       users[index] = user;
       this.users = users;

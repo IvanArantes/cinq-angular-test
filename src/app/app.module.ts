@@ -10,13 +10,11 @@ import { AppComponent } from './app.component';
 import { UserModule } from './components/user/user.module';
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule } from './shared/shared/shared.module';
-import { UsersHostDirective } from './directives/users-host.directive';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UsersHostDirective
+    AppComponent
   ],
   imports: [
     UserModule,

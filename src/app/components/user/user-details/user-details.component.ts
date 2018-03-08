@@ -40,7 +40,11 @@ export class UserDetailsComponent implements OnInit {
     .switchMap((params : ParamMap) =>
     this.userService.getUser(params.get('id'))).subscribe(res => {
       this.user = res as User;
+      this.userService.readJsonFile().subscribe(resp => {
+        this.users = resp as User[];
+      });
       this.fillForm();
+      console.log(this.users);
     }
   );
   }
@@ -82,11 +86,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   public saveEditions() {
-    let tempUsers: User[];
-    this.userService.readJsonFile().subscribe(resp => {
-      tempUsers = resp as User[];
-      this.userService.saveUser(this.userForm.value, tempUsers);
+      this.userService.saveUser(this.userForm.value, this.users);
       this.returnToList();
-    });
   }
 }
